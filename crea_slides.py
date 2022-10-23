@@ -6,6 +6,7 @@ FILES = (
     'protocolliestandard/risorse-e-uri.md',
     'protocolliestandard/http.md',
     'protocolliestandard/java-http.md',
+    'tecnologieclient/html.md',
     
 )
 
