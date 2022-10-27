@@ -139,3 +139,118 @@ __Algoritmo per la priorità__:
   - ...
 - ordina per ordine di comparizione nel file css (le ultime prima)
 
+## Layout
+
+Il flusso di visualizzazione è la disposizione dei riquadri nel viewport, la proprietà display lo influenza.
+
+Valori di display:
+
+- __block__: interruzione di linea
+- __inline__: nessuna interruzione di linea
+- __none__: non viene visualizzato
+
+Nell'algoritmo tradizionale i blocchi annidati corrispondono a riquadri annidati, gli elementi vengono disposti in base al valore di display.
+
+Con il CSS3 vengono introdotti il layout GRID e FLEX:
+
+### Grid
+
+`display: grid`, gli elementi possono essere disposti per righe e colonne analogamente a una tabella.
+
+### Flex
+
+Maggiore flessibilità, utile per controllare la disposizione dei riquadri alterando il flusso standard.
+
+Una serie di opzioni personalizzabili:
+
+```css
+flex-direction: row; /* row, column, row-reverse, column-reverse  DIREZIONE PER DISPORRE GLI ELEMENTI*/
+flex-wrap: wrap; /* nowrap, wrap, wrap-reverse COMPORTAMENTO QUANDO SI RAGGIUNGE IL LIMITE DELLA PAGINA*/
+justify-content: center; /* per i riquadri:  flex-start, center, flex-end, space-around, space-between PER I RIQUADRI*/
+align-content: stretch; /* per le righe:  stretch, center, space-around, space-between PER LE LINEE*/ 
+        
+```
+
+### Position
+
+Posizioni in CSS3:
+
+1. static
+2. relative
+3. fixed
+4. absolute
+5. sticky
+
+#### Static
+
+Posizionamento classico secondo l'algoritmo di flusso
+
+#### Relative
+
+Posizionamento rispetto al riquadro padre, con due attributi `top` e `left`, se lasciati a 0 la visualizzazione è identica a static.
+
+#### Fixed
+
+Coordinate specificate come distanza rispetto al viewport, rimane fisso anche se il contenuto della pagina scorre.
+
+#### Sticky
+
+Resta visibile finché il container è visibile.
+
+Normalmente è posizionato in modo relative, quando raggiunge il limite superiore (o inferiore) della pagina, l'elemento resta visibile finché il container non esce dal viewport.
+
+#### Absolute
+
+Coordinate espresse come distanze dal primo riquadro padre che ha una position diversa da static. Se non c'è nessun riquadro genitore con queste caratteristiche il riquadro diventa automaticamente il body e quindi il comportamento è identico al fixed.
+
+#### Float e clear
+
+La proprietà `float` può assumere valori `left` o `right`, fissa un riquadro fuori dal flusso ordinario, l'elemento diventa block e gli altri elementi gli scorrono intorno.
+
+La proprietà `clear` dichiara il comportamento di un elemento vicino a un elemento flottante, può assumere valori `left`, `right` o `both`.
+
+### Stacking Context
+
+Oltre alle 2 dimensioni x,y gli elementi possono anche essere posizionati rispetto all'asse z.
+
+Uno stacking context è un gruppo di elementi ordinabili rispetto all'asse z. Di default una pagina html ha un unico S.C. corrispondente al tag html. La disposizione è in base all'ordine di apparizione dei riquadri, quelli apparsi dopo appaiono sopra gli altri.
+
+L'attributo per modificare il comportamento di default è `z-index`, che accetta come valori `auto` o un indice numerico (positivo o negativo). Più alto è l'indice alto sarà il posizionamento dell'elemento sull'asse z.
+
+L'attributo ha effetto solo su elementi che originano a loro volta uno stacking context (ovvero elementi con position diverso da static). Questo fornisce un esempio di utilità del `position: relative` senza specificare altri attributi.
+
+## Media Queries
+
+Regole da applicare solo sotto determinate condizioni del dispositivo che visualizza la pagina. La sintassi è:
+
+```css
+@media <regola> {
+  <regole css>
+}
+
+```
+
+Alcune regole sono `print` per la visualizzazione di stampa, `min-width`, `max-width`, `min-height`, `max-height` per la larghezza e altezza del viewport, `orientation` per l'orientamento `min-resolution`, `max-resolution`...
+
+## Variabili e import
+
+CSS fornisce alcuni strumenti per facilitare lo sviluppo e l'organizzazione delle regole in progetti di grandi dimensioni:
+
+La direttiva `@import` consente di importare regole di stile da un altro file css. Deve essere la prima dichiarazione del foglio.
+
+Similmente a come si fa in un linguaggio di programmazione è possibile definire delle variabili ed utilizzarle nel foglio di stile, evitando ridondanze:
+
+Sintassi:
+
+```css
+:root {
+  --variabile: 20px; /* Dichiarazione, le variabili hanno la visibilità nell'elemento che le ha dichiarate e elementi figli */
+}
+
+/* Utilizzo */
+div {
+  padding: var(--variabile); /* Si utilizza l'espressione var per recuperarne il valore */
+}
+```
+
+Per effettuare calcoli (somme, differenze...) sulle variabili è possibile usare la funzione `calc()`. Es. `calc(var(--variabile) + 1px);`
