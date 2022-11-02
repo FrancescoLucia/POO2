@@ -254,3 +254,50 @@ div {
 ```
 
 Per effettuare calcoli (somme, differenze...) sulle variabili è possibile usare la funzione `calc()`. Es. `calc(var(--variabile) + 1px);`
+
+## Responsiveness
+
+Negli anni sono stati sviluppati framework per consentire di sviluppare rapidamente interfacce web responsive. Si tratta di file css e javascript già pronti da inserire nei progetti.
+
+### Boostrap
+
+E' un framework open source sviluppato da Twitter. Composto da file css e javascript (utile solo per i componenti complessi), fornisce una serie di classi css da attribuire agli elementi che si desidera formattare e una serie di elementi già pronti da recuperare nella documentazione. Il meccanismo di layout è basato su Flexbox.
+
+La struttura di una pagina in bootstrap è formata da div con classe `.container` o `.container-fluid`, div righe (classe `.row`) e div colonne `.col`.
+
+Ogni riga può contenere 12 colonne, è possibile specificare per ogni div colonna quante righe deve occupare.
+
+Bootstrap include delle media query predefinite per i diversi tipi di schermo:
+
+- Extra Small (xs la dimensione di default per le regoole)
+- Small (sm)
+- Medium (md)
+- Large (lg)
+- Extra large (xl)
+
+Attraverso le classi bootstrap e le media query è possibile specificare le dimensioni di una colonna a seconda del dispositivo su cui viene visualizzata con la sintassi `<div class=".col-<dimensione>-<numeroColonne> .col-<altraDimensione>-<altroNumeroColonne> ...">`.
+
+Ad esempio
+
+```html
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+    </div>
+  </div>
+</div>
+```
+
+Una classe css vale anche per le classi successive (partendo dal basso) a meno che non venga ridefinita.
+
+Le colonne hanno una serie di classi aggiuntive: `grow` ` shrink`, `offset`, `order`, `margins`...
+
+### Tailwind CSS
+
+TailWind offre un approccio più flessibile di bootstrap: è un insieme di microclassi css che possono essere assemblate per produrre elementi complessi.
+
+A differenza di boostrap è necessario un preprocessore che scansiona i file e produce un file css con le sole classi utilizzate.

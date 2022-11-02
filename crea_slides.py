@@ -8,6 +8,7 @@ FILES = (
     'protocolliestandard/java-http.md',
     'tecnologieclient/html.md',
     'tecnologieclient/css.md',
+    'tecnologieclient/jsdom.md',
     
 )
 
