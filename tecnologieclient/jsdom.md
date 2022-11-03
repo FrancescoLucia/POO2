@@ -10,6 +10,8 @@ L'oggetto `window` del BOM permette l'accesso ad informazioni sulla finestra del
 
 Javascript può accedere ad una serie di informazioni e interazioni con la finestra del browser es. `window.navigator`, `window.location` (uri), `window.location.assign("")`, `window.alert`, `window.confirm`, `window.prompt`, gli ultimi 3 servono per aprire finestre di interazione con l'utente.
 
+## Navigare il DOM
+
 L'oggetto `document` rappresenta la radice del DOM. Attraverso di esso è possibile recuperare, modificare, eliminare e aggiungere nodi. Contiene una serie di metadati accessibili come proprietà:
 
 - `document.lastModified`
@@ -45,6 +47,8 @@ Esistono alcune collezioni predefinite nel dom:
 - `document.images`
 - `document.anchors`
 - `document.scripts`
+
+## Eventi
 
 Ogni elemento in HTML può essere sorgente di evento e il DOM prevede la registrazione di un gestore di eventi per ognuno.
 

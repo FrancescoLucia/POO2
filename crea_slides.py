@@ -9,6 +9,7 @@ FILES = (
     'tecnologieclient/html.md',
     'tecnologieclient/css.md',
     'tecnologieclient/jsdom.md',
+    'tecnologieclient/aspettimetodologici.md',
     
 )
 
