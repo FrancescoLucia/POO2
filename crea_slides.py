@@ -12,6 +12,9 @@ FILES = (
     'tecnologieclient/aspettimetodologici.md',
     'serviziweb/introduzione.md',
     'serviziweb/rest.md',
+
+    'programmazioneweb/introduzione.md',
+    'programmazioneweb/servlet.md',
     
 )
 
