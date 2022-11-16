@@ -8,6 +8,8 @@
 - [Protocolli e standard - Risorse e URI](protocolliestandard/risorse-e-uri.md)
 - [Procotolli e standard - Protocollo HTTP](protocolliestandard/http.md)
 - [Protocolli e standard - Java e HTTP](protocolliestandard/java-http.md)
+- [Tecniche di Programmazione - Lombok]()
+- [Tecniche di Programmazione - Date nuovo formato]()
 
 ## Programmazione Web
 
@@ -18,7 +20,6 @@
 ## Servizi Web
 - [Servizi Web - Introduzione](serviziweb/introduzione.md)
 - [Servizi Web - API REST](serviziweb/rest.md)
-
-## Programmazione Web
 - [Programmazione Web - Introduzione](programmazioneweb/introduzione.md)
 - [Programmazione Web - Servlet](programmazioneweb/servlet.md)
+- 
