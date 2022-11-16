@@ -15,6 +15,8 @@ FILES = (
 
     'programmazioneweb/introduzione.md',
     'programmazioneweb/servlet.md',
+    'tecnichediprogrammazione/date.md',
+    'tecnichediprogrammazione/lombok.md',
     
 )
 
