@@ -17,6 +17,7 @@ FILES = (
     'programmazioneweb/servlet.md',
     'tecnichediprogrammazione/date.md',
     'tecnichediprogrammazione/lombok.md',
+    'serviziweb/jaxrs.md'
     
 )
 
