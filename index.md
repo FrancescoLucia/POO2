@@ -23,3 +23,4 @@
 - [Programmazione Web - Introduzione](programmazioneweb/introduzione.md)
 - [Programmazione Web - Servlet](programmazioneweb/servlet.md)
 - [Servizi Web - JAX-RS](serviziweb/jaxrs.md)
+- [Servizi Web - Jersey](serviziweb/jersey.md)
