@@ -62,3 +62,51 @@ Per il DAO non verrà utilizzata da dependency injection ma un singleton `DAOFac
 Per il DAO mock verrà utilizzato un Repository Mock: un singleton con una serie di proprietà rappresentanti lo stato del mock sul quale lavoreranno i singoli DAO. Il repository mantiene una proprietà `long prossimoId` che sarà utile per assegnare un id ad ogni nuova entità inserita.
 
 Per evitare la scrittura di molto codice ci sarà una classe generica `RepositoryGenericoMock` che esporrà vari metodi di accesso generici per le operazioni CRUD e una classe `DAOGenericoMock` .
+
+
+## Protezione delle risorse
+
+Per l'autenticazione nel modello ci sarà una classe per gli utenti, generalmente questa contiene i campi username e password ed eventualmente i ruoli.
+
+Nel processo di autenticazione il client fornsice le credenziali dell'utente, il server verifica le credenziali e in caso di successo restituisce un token. Il client dovrà poi restituire il token in tutte le richieste successive per essere autorizzato con l'intestazione `Authorization: Bearer <token>`
+
+Il server quando riceve una richiesta contenente un token nell'intestazione deve validare il token (verificare che sia firmato correttamente e che non sia scaduto), estrarre l'username, caricare l'oggetto Utente dal DAO e verificare i suoi permessi, poi inserire le informazioni utili nel SecurityContext.
+
+## Filtri
+
+I filtri consentono di definire alcune operazioni che andrebbero svolte prima di eseguire il codice della risorsa o dopo averlo eseguito. Consentono di effettuare controlli di sicurezza senza duplicare il codice per ogni risorsa.
+
+JAX-RS offre varie categorie di filtri, specifici per tipologia di operazione. Ad ogni tipologia corrisponde un'interfaccia da implementare.
+
+Tutti i filtri devono essere annotati con `@Provider`.
+
+### ContainerRequestFilter
+
+L'interfaccia richiede di implementare il metodo `filter(ContainerRequestContext req)` che consente l'accesso alle informazioni della richiesta.
+
+Il filtro viene eseguito prima di eseguire una risorsa. Nel caso in cui sia necessario interrompere la richiesta viene messo a disposizione il metodo `abortWith`.
+
+### ContainerResponseFilter
+
+Analogo del precedente ma invocato dopo aver eseguito la risorsa. Il metodo filter accetta come parametro anche un `ContainerResponseContext`.
+
+In generale per ogni risorsa possono essere eseguiti vari filtri in serie, per stabilire l'ordine di esecuzione è necessario inserire l'annotazione `@Priority(<valore>` specificando un valore numerico che rappresenta la priorità del filtro.
+
+I filtri di richiesta vengono eseguiti solo se la risorsa esiste, per bypassare questo controllo il filtro deve essere annotato con `@PreMatching`.
+
+### Filtri Cors
+
+In caso di richieste cross origin si realizza un ContainerResponseFilter per verificare se l'origine fa parte di quelle consentite (comunemente specificate in un array), in questo caso si aggiungono le intestazioni HTTP: `Access-Control-Allow-Origin` e `Access-Control-Allow-Methods`.
+
+### Altre tipologie di filtri:
+
+- `ExceptionMapper`: invocati quando si verifica un'eccezione
+- `ParamConverterProvider`: convertitori personalizzati per i QueryParam
+
+## Linee guida sui TEST
+
+1. I test sula modello rimangono identici a quelli previsti con applicazioni Desktop e Console
+2. I servizi vanno trattati come moduli di logica applicativa e per ogni servizio è previsto un test JUnit che esegue i casi CRUD facendo asserzioni sui risultati.
+3. I test sulle risorse vanno eseguiti con strumenti che semplificano il lavoro come PostMan o SwaggerUI.
+
+La libreria swagger si occupa anche di generare la documentazione in formato JSON scandendo automaticamente le risorse. La documentazione può essere estesa/personalizata con opportune annotazioni.
